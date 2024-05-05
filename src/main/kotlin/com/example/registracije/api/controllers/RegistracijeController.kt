@@ -1,11 +1,13 @@
 package com.example.registracije.api.controllers
 
 import com.example.registracije.api.services.RegistracijeService
+import com.example.registracije.domain.Registracija
+import com.example.registracije.domain.Vlasnik
 import com.example.registracije.domain.Vozilo
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/registracija")
+@RequestMapping("/registracija-vozila")
 class RegistracijeController(
     private val registracijeService: RegistracijeService
 ) {
@@ -30,10 +32,48 @@ class RegistracijeController(
     }
 
     @DeleteMapping("/vozila/{voziloId}")
-    fun delete(
+    fun deleteVozilo(
         @PathVariable voziloId: Int
     ) {
         return registracijeService.deleteVozilo(voziloId)
+    }
+
+    @GetMapping("/vlasnik")
+    fun getAllVlasnik(): List<Vlasnik> {
+        return registracijeService.getAllVlasnik()
+    }
+
+    @PostMapping("/vlasnik")
+    fun postVlasnik(
+        @RequestBody vlasnik: Vlasnik
+    ): Vlasnik {
+        return registracijeService.createVlasnik(vlasnik)
+    }
+
+    @PutMapping("/vlasnik")
+    fun putVlasik(
+        @RequestBody vlasnik: Vlasnik
+    ): Vlasnik {
+        return registracijeService.updateVlasnik(vlasnik)
+    }
+
+    @DeleteMapping("/vlasnik/{vlasnikId}")
+    fun deleteVlasnik(
+        @PathVariable vlasnikId: Int
+    ) {
+        registracijeService.deleteVlasnik(vlasnikId)
+    }
+
+    @GetMapping("/registracija")
+    fun getAllRegistracija(): List<Registracija> {
+        return registracijeService.getAllRegistracija()
+    }
+
+    @DeleteMapping("/registracija/{registracijaId}")
+    fun deleteRegistracija(
+        @PathVariable registracijaId: Int
+    ) {
+        registracijeService.deleteRegistracija(registracijaId)
     }
 
 }

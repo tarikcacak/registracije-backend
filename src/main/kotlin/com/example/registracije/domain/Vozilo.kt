@@ -10,7 +10,7 @@ import jakarta.persistence.Id
 data class Vozilo(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val voziloId: Int = 0,
+    val voziloId: Int,
 
     @Column(name = "marka")
     val marka: String,
