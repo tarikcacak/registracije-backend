@@ -13,10 +13,4 @@ interface RegistracijaRepository : JpaRepository<Registracija, Long> {
     )
     fun getAllRegistracije(): List<Registracija>
 
-    @Query(
-        value = "delete from registracija where registracija_id = :registracijaId",
-        nativeQuery = true
-    )
-    fun deleteRegistracijaById(@Param("registracijaId") registracijaid: Int)
-
 }

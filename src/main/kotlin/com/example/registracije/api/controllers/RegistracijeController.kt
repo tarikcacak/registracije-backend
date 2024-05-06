@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*
 class RegistracijeController(
     private val registracijeService: RegistracijeService
 ) {
-
     @GetMapping("/vozila")
     fun getAllVozila(): List<Vozilo> {
         return registracijeService.getAllVozila()
@@ -69,11 +68,25 @@ class RegistracijeController(
         return registracijeService.getAllRegistracija()
     }
 
+    @PostMapping("/registracija")
+    fun postRegistracija(
+        @RequestBody registracija: Registracija
+    ): Registracija
+    {
+        return registracijeService.createRegistracija(registracija)
+    }
+
+    @PutMapping("/registracija")
+    fun putMapping(
+        @RequestBody registracija: Registracija
+    ): Registracija {
+        return registracijeService.updateRegistracija(registracija)
+    }
+
     @DeleteMapping("/registracija/{registracijaId}")
     fun deleteRegistracija(
         @PathVariable registracijaId: Int
     ) {
         registracijeService.deleteRegistracija(registracijaId)
     }
-
 }

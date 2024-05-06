@@ -50,7 +50,15 @@ class RegistracijeService(
         return registracijaRepository.getAllRegistracije()
     }
 
+    fun createRegistracija(registracija: Registracija): Registracija {
+        return registracijaRepository.save(registracija)
+    }
+
+    fun updateRegistracija(registracija: Registracija): Registracija {
+        return registracijaRepository.save(registracija)
+    }
+
     fun deleteRegistracija(registracijaId: Int) {
-        return registracijaRepository.deleteRegistracijaById(registracijaId)
+        return registracijaRepository.deleteById(registracijaId.toLong())
     }
 }
